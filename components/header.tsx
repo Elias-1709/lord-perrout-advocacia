@@ -2,138 +2,33 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useState, useEffect } from "react"
-import { Menu, X, Phone } from "lucide-react"
+import { useEffect, useState } from "react"
+import { Menu, X, Phone, ArrowUpRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
+const navItems = [
+  { href: "/sobre", label: "O escritório" },
+  { href: "/areas", label: "Áreas de atuação" },
+  { href: "/equipe", label: "Equipe" },
+  { href: "/blog", label: "Conteúdo" },
+]
+
 export function Header() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
-  const [scrolled, setScrolled] = useState(false)
   const pathname = usePathname()
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  useEffect(() => {
-    setMobileMenuOpen(false)
-  }, [pathname])
-
-  const navItems = [
-    { href: "/", label: "Home" },
-    { href: "/sobre", label: "Sobre" },
-    { href: "/areas", label: "Áreas de Atuação" },
-    { href: "/equipe", label: "Equipe" },
-    { href: "/blog", label: "Artigos" },
-    { href: "/contato", label: "Contato" },
-  ]
-
+  const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+  useEffect(() => { const onScroll = () => setScrolled(window.scrollY > 16); window.addEventListener("scroll", onScroll); return () => window.removeEventListener("scroll", onScroll) }, [])
+  useEffect(() => setOpen(false), [pathname])
   return (
-    <header
-      className={cn(
-        "sticky top-0 z-50 w-full border-b transition-all duration-300",
-        scrolled
-          ? "border-border/40 bg-background/95 shadow-sm backdrop-blur supports-[backdrop-filter]:bg-background/80"
-          : "border-transparent bg-transparent",
-      )}
-    >
-      <nav className="container mx-auto flex h-20 max-w-7xl items-center justify-between px-4 md:px-6">
-        {/* Logo */}
-        <Link href="/" className="group flex items-center space-x-2">
-          <div className="flex flex-col">
-            <span className="font-serif text-2xl font-bold tracking-tight text-foreground transition-colors group-hover:text-primary">
-              LORD PERROUT
-            </span>
-            <span className="text-xs font-medium tracking-widest text-muted-foreground">ADVOCACIA</span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden items-center gap-1 lg:flex">
-          {navItems.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "relative px-4 py-2 text-sm font-medium transition-colors",
-                pathname === item.href ? "text-primary" : "text-muted-foreground hover:text-foreground",
-              )}
-            >
-              {item.label}
-              {pathname === item.href && (
-                <span className="absolute bottom-0 left-1/2 h-0.5 w-8 -translate-x-1/2 rounded-full bg-primary" />
-              )}
-            </Link>
-          ))}
-          <Button asChild size="sm" className="ml-4">
-            <a href="tel:+551112345678" className="inline-flex items-center gap-2">
-              <Phone className="h-4 w-4" />
-              <span className="hidden xl:inline">(11) 1234-5678</span>
-            </a>
-          </Button>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <Button
-          variant="ghost"
-          size="icon"
-          className="lg:hidden"
-          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          aria-label={mobileMenuOpen ? "Fechar menu" : "Abrir menu"}
-        >
-          <span className="relative h-6 w-6">
-            <Menu
-              className={cn(
-                "absolute inset-0 h-6 w-6 transition-all duration-300",
-                mobileMenuOpen ? "rotate-90 opacity-0" : "rotate-0 opacity-100",
-              )}
-            />
-            <X
-              className={cn(
-                "absolute inset-0 h-6 w-6 transition-all duration-300",
-                mobileMenuOpen ? "rotate-0 opacity-100" : "-rotate-90 opacity-0",
-              )}
-            />
-          </span>
-        </Button>
+    <header className={cn("sticky top-0 z-50 border-b transition-all", scrolled ? "border-border/80 bg-background/95 shadow-sm backdrop-blur" : "border-transparent bg-background/80 backdrop-blur-sm")}>
+      <div className="hidden border-b border-border/60 bg-primary py-2 text-primary-foreground md:block"><div className="mx-auto flex max-w-7xl items-center justify-between px-6 text-xs tracking-wide"><span>Atendimento estratégico para decisões importantes</span><span className="text-primary-foreground/75">Segunda a sexta · 9h às 18h</span></div></div>
+      <nav className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-4 md:px-6" aria-label="Navegação principal">
+        <Link href="/" className="group flex items-center gap-3" aria-label="Lord Perrout Advocacia - início"><span className="flex size-10 items-center justify-center border border-accent font-serif text-xl text-accent transition-transform group-hover:rotate-6">LP</span><span className="flex flex-col"><span className="font-serif text-lg font-semibold leading-none tracking-wide text-foreground">LORD PERRout</span><span className="mt-1 text-[10px] font-medium tracking-[.28em] text-muted-foreground">ADVOCACIA</span></span></Link>
+        <div className="hidden items-center gap-1 lg:flex">{navItems.map((item) => <Link key={item.href} href={item.href} className={cn("relative px-4 py-3 text-sm transition-colors hover:text-foreground", pathname.startsWith(item.href) ? "text-primary" : "text-muted-foreground")}>{item.label}{pathname.startsWith(item.href) && <span className="absolute inset-x-4 -bottom-0.5 h-px bg-accent" />}</Link>)}<Button asChild className="ml-4 gap-2"><Link href="/contato">Fale conosco <ArrowUpRight data-icon="inline-end" /></Link></Button></div>
+        <Button variant="ghost" size="icon" className="lg:hidden" onClick={() => setOpen(!open)} aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"}>{open ? <X /> : <Menu />}</Button>
       </nav>
-
-      {/* Mobile Navigation */}
-      <div
-        className={cn(
-          "overflow-hidden border-t border-border bg-background transition-all duration-300 lg:hidden",
-          mobileMenuOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0",
-        )}
-      >
-        <div className="container mx-auto flex flex-col space-y-2 px-4 py-4">
-          {navItems.map((item, index) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              className={cn(
-                "rounded-lg px-4 py-3 text-base font-medium transition-all",
-                pathname === item.href
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
-              )}
-              style={{ animationDelay: `${index * 50}ms` }}
-            >
-              {item.label}
-            </Link>
-          ))}
-          <Button asChild className="mt-2 w-full">
-            <a href="tel:+551112345678" className="inline-flex items-center justify-center gap-2">
-              <Phone className="h-4 w-4" />
-              (11) 1234-5678
-            </a>
-          </Button>
-        </div>
-      </div>
+      <div className={cn("overflow-hidden border-t border-border bg-background transition-all lg:hidden", open ? "max-h-96 opacity-100" : "max-h-0 opacity-0")}><div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 py-4">{navItems.map((item) => <Link key={item.href} href={item.href} className={cn("rounded-sm px-4 py-3 text-base", pathname.startsWith(item.href) ? "bg-secondary text-primary" : "text-muted-foreground")}>{item.label}</Link>)}<Button asChild className="mt-3"><Link href="/contato"><Phone data-icon="inline-start" /> Agendar conversa</Link></Button></div></div>
     </header>
   )
 }
