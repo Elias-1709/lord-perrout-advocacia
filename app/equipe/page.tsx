@@ -140,9 +140,9 @@ export default function EquipePage() {
                     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
                       <div className="grid md:grid-cols-[300px_1fr]">
                         {/* Foto individual do integrante */}
-                        <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8">
+                        <div className="bg-gradient-to-br from-primary/15 via-muted/50 to-primary/5 p-8">
                           <div className="flex h-full flex-col items-center justify-center text-center">
-                            <div className="relative mb-4 aspect-square w-40 overflow-hidden rounded-full border-4 border-background shadow-lg transition-transform duration-300 hover:scale-105">
+                            <div className="relative mb-4 aspect-square w-40 overflow-hidden rounded-full border-4 border-background bg-gradient-to-br from-muted/80 via-background to-primary/10 shadow-lg transition-transform duration-300 hover:scale-105">
                               <img
                                 src={member.image}
                                 alt={`Foto de ${member.name}`}
