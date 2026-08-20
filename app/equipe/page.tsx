@@ -18,6 +18,7 @@ export default function EquipePage() {
     {
       name: "Dr. Ricardo Lord Perrout",
       role: "Sócio Fundador",
+      image: "/images/ricardo-lord-perrout.png",
       specialty: "Direito Civil e Empresarial",
       description:
         "Especialista em Direito Civil e Empresarial com mais de 15 anos de experiência. Atuação estratégica em consultoria empresarial e resolução de conflitos complexos.",
@@ -35,6 +36,7 @@ export default function EquipePage() {
     {
       name: "Dra. Mariana Santos",
       role: "Sócia",
+      image: "/images/mariana-santos.png",
       specialty: "Direito Trabalhista",
       description:
         "Especializada em Direito Trabalhista com ampla experiência na defesa de empregados e empregadores. Consultoria preventiva e atuação em ações trabalhistas de alta complexidade.",
@@ -52,6 +54,7 @@ export default function EquipePage() {
     {
       name: "Dr. Fernando Oliveira",
       role: "Advogado Associado",
+      image: "/images/fernando-oliveira.png",
       specialty: "Direito Previdenciário",
       description:
         "Dedicado ao Direito Previdenciário, com foco em concessão e revisão de benefícios do INSS. Atuação humanizada e comprometida com os direitos dos segurados.",
@@ -69,6 +72,7 @@ export default function EquipePage() {
     {
       name: "Dra. Juliana Costa",
       role: "Advogada Associada",
+      image: "/images/juliana-costa.png",
       specialty: "Direito do Consumidor e Civil",
       description:
         "Atuação em Direito do Consumidor e Direito Civil, com foco na defesa de direitos individuais. Experiência em ações indenizatórias e contratos.",
@@ -116,11 +120,15 @@ export default function EquipePage() {
                   <AnimatedSection key={member.name} animation="fade-in-up" delay={index * 100}>
                     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg">
                       <div className="grid md:grid-cols-[300px_1fr]">
-                        {/* Photo Placeholder */}
+                        {/* Foto individual do integrante */}
                         <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-8">
                           <div className="flex h-full flex-col items-center justify-center text-center">
-                            <div className="mb-4 flex h-32 w-32 items-center justify-center rounded-full bg-primary/20 transition-transform duration-300 hover:scale-105">
-                              <Scale className="h-16 w-16 text-primary" />
+                            <div className="relative mb-4 aspect-square w-40 overflow-hidden rounded-full border-4 border-background shadow-lg transition-transform duration-300 hover:scale-105">
+                              <img
+                                src={member.image}
+                                alt={`Foto de ${member.name}`}
+                                className="absolute inset-0 h-full w-full object-cover"
+                              />
                             </div>
                             <h3 className="font-serif text-xl font-bold text-foreground">{member.name}</h3>
                             <p className="mt-1 text-sm font-medium text-primary">{member.role}</p>
