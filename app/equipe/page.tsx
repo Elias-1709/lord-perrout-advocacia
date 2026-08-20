@@ -72,7 +72,7 @@ export default function EquipePage() {
     {
       name: "Dra. Fernanda Perrout Elias",
       role: "Advogada Especialista",
-      image: "/images/fernanda-perrout-elias-office.png",
+      image: "/images/fernanda-perrout-elias.png",
       specialty: "Direito Penal e Direito Militar",
       description:
         "Advogada com 9 anos de experiência, reconhecida pela atuação estratégica e humanizada em Direito Penal e Direito Militar, com defesa técnica dedicada em momentos decisivos.",
