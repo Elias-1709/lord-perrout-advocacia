@@ -6,11 +6,29 @@ import { WhatsAppButton } from "@/components/whatsapp-button"
 import { AnimatedSection } from "@/components/animated-section"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Scale, Users, Building2, Heart, ShoppingCart, Home, Briefcase, FileText, ArrowRight } from "lucide-react"
+import { Scale, Users, Building2, Heart, ShoppingCart, Home, Briefcase, FileText, Shield, ArrowRight } from "lucide-react"
 import Link from "next/link"
 
 export default function AreasPage() {
   const areas = [
+    {
+      icon: Shield,
+      title: "Direito Penal",
+      description:
+        "Defesa técnica e estratégica em inquéritos, ações penais, audiências, tribunais do júri, medidas cautelares e situações que exigem atuação rápida e sigilosa.",
+      href: "/contato",
+      topics: ["Defesa Criminal", "Inquéritos Policiais", "Tribunal do Júri", "Medidas Cautelares"],
+      color: "from-red-500/10 to-red-600/5",
+    },
+    {
+      icon: Shield,
+      title: "Direito Militar",
+      description:
+        "Atuação especializada em sindicâncias, procedimentos administrativos, conselhos de disciplina e processos perante a Justiça Militar.",
+      href: "/contato",
+      topics: ["Justiça Militar", "Sindicâncias", "Conselhos de Disciplina", "Processos Administrativos"],
+      color: "from-slate-500/10 to-slate-600/5",
+    },
     {
       icon: Scale,
       title: "Direito Civil",

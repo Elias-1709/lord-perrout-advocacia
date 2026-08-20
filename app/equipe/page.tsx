@@ -70,6 +70,25 @@ export default function EquipePage() {
       linkedin: "https://linkedin.com/in/fernandooliveira",
     },
     {
+      name: "Dra. Fernanda Perrout Elias",
+      role: "Advogada Especialista",
+      image: "/images/fernanda-perrout-elias.png",
+      specialty: "Direito Penal e Direito Militar",
+      description:
+        "Advogada com 9 anos de experiência, reconhecida pela atuação estratégica e humanizada em Direito Penal e Direito Militar, com defesa técnica dedicada em momentos decisivos.",
+      fullDescription:
+        "Advogada com 9 anos de experiência, especialista em Direito Penal e Direito Militar. Atua com foco em defesa criminal, acompanhamento de inquéritos, ações penais, audiências, tribunais do júri e medidas cautelares, sempre com estratégia, sigilo e atenção individualizada. No Direito Militar, presta assistência em procedimentos administrativos, sindicâncias, conselhos de disciplina e processos perante a Justiça Militar. Membro da Comissão de Direito Penal e Direito Militar da OAB/RJ.",
+      credentials: [
+        "OAB/RJ 084.196",
+        "Especialista em Direito Penal e Direito Militar",
+        "Graduada em Direito - Mackenzie",
+        "Membro da Comissão de Direito Penal e Direito Militar da OAB/RJ",
+        "Membro CDC OAB/RJ",
+      ],
+      email: "fernanda.elias@lordperrout.com.br",
+      linkedin: "https://linkedin.com/in/fernandaperroutelias",
+    },
+    {
       name: "Dra. Juliana Costa",
       role: "Advogada Associada",
       image: "/images/juliana-costa.png",
