@@ -24,7 +24,7 @@ export function AnimatedSection({ children, className, animation = "fade-in-up",
   return (
     <div
       ref={ref}
-      className={cn("opacity-0", isIntersecting && animationClass, className)}
+      className={cn(isIntersecting ? animationClass : "opacity-100", className)}
       style={{ animationDelay: `${delay}ms`, animationFillMode: "forwards" }}
     >
       {children}
